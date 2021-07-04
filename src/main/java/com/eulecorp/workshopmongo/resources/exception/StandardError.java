@@ -1,11 +1,15 @@
 package com.eulecorp.workshopmongo.resources.exception;
 
 import java.io.Serializable;
+import java.time.Instant;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class StandardError implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Long timestamp;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private Instant timestamp;
 	private Integer status;
 	private String error;
 	private String message;
@@ -14,7 +18,7 @@ public class StandardError implements Serializable{
 	public StandardError() {
 	}
 
-	public StandardError(Long timestamp, Integer status, String error, String message, String path) {
+	public StandardError(Instant timestamp, Integer status, String error, String message, String path) {
 		super();
 		this.timestamp = timestamp;
 		this.status = status;
@@ -23,11 +27,11 @@ public class StandardError implements Serializable{
 		this.path = path;
 	}
 
-	public Long getTimestamp() {
+	public Instant getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Long timestamp) {
+	public void setTimestamp(Instant timestamp) {
 		this.timestamp = timestamp;
 	}
 
@@ -62,7 +66,5 @@ public class StandardError implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
-
-	
 	
 }
